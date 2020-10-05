@@ -1,11 +1,13 @@
-// shared config (dev and prod)
-const {resolve} = require('path');
-const {CheckerPlugin} = require('awesome-typescript-loader');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const {resolve} = require('path')
+const {CheckerPlugin} = require('awesome-typescript-loader')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
+    alias: {
+      Components: resolve(__dirname, '../../src/components'),
+    },
   },
   context: resolve(__dirname, '../../src'),
   module: {
@@ -21,15 +23,11 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', { loader: 'css-loader', options: { importLoaders: 1 } }],
+        use: ['style-loader', {loader: 'css-loader', options: {importLoaders: 1}}],
       },
       {
         test: /\.(scss|sass)$/,
-        loaders: [
-          'style-loader',
-          { loader: 'css-loader', options: { importLoaders: 1 } },
-          'sass-loader',
-        ],
+        loaders: ['style-loader', {loader: 'css-loader', options: {importLoaders: 1}}, 'sass-loader'],
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
@@ -40,15 +38,12 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new CheckerPlugin(),
-    new HtmlWebpackPlugin({template: 'index.html.ejs',}),
-  ],
+  plugins: [new CheckerPlugin(), new HtmlWebpackPlugin({template: 'index.html.ejs'})],
   externals: {
-    'react': 'React',
+    react: 'React',
     'react-dom': 'ReactDOM',
   },
   performance: {
     hints: false,
   },
-};
+}

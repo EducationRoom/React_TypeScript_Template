@@ -15,7 +15,7 @@
       "Components": ["components"]
     }
   },
-  "include": ["./src/**/*"],
+  "include": ["./src/**/*", "config.d.ts"],
   "awesomeTypescriptLoaderOptions": {
     "reportFiles": ["./src/**/*"]
   }
